@@ -1,60 +1,48 @@
 <!DOCTYPE html>
-<html lang="pt-br">
+<html lang="en">
 <head>
     <meta charset="UTF-8">
     <meta http-equiv="X-UA-Compatible" content="IE=edge">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>POO - Exemplo 5</title>
+    <title>Exemplo 6</title>
 </head>
 <body>
-    <h1>PHP POO Exemplo 5</h1>
+    <h1>PHP POO - Exemplo 6</h1>
     <hr>
     <h2>Assuntos abordados:</h2>
     <ul>
-        <li>Herança</li>
-        <li>Classe abstrata (não pode ser instanciada)</li>
-        <li>Classe final (não permite herança)</li>
-        <li>Métodos/propriedades protegidas (acessíveis apenas pelas subclasses)</li>
+        <li>Polimorfismo</li>
     </ul>
+<?php
+// Importando a classe
+require_once "src/PessoaFisica.php"; // subclasse
+require_once "src/PessoaJuridica.php"; // subclasse
 
-    <?php
-    
-    require_once "src/PessoaFisica.php";
-    require_once "src/PessoaJuridica.php";
-    require_once "src/Mei.php";
+$clientePF = new PessoaFisica;
+$clientePF->setNome('Tiago');
+$clientePF->setEmail('tiago@gmail.com');
+$clientePF->setSenha('123abc');
+$clientePF->setCpf('123.456.789-00');
+$clientePF->setIdade(38);
 
-    $clientePF = new PessoaFisica;
-    $clientePJ = new PessoaJuridica;
-    $clienteMei = new Mei;
+$clientePJ = new PessoaJuridica;
+$clientePJ->setNome("Jon Oliva");
+$clientePJ->setCnpj("32.088.0001/000-41");
+?>
 
-    $clientePF->setNome('Veronica');
-    $clientePF->setEmail('vlsveronica@gmail.com');
-    $clientePF->setCpf('352.966.783-88');
-    $clientePF->setSenha('abc123');
-    $clientePF->setIdade(28);
+<h3>Pessoa Física</h3>
+<p> <?=$clientePF->getNome()?> </p>
 
-    $clientePJ->setNome('SERVICO NACIONAL DE APRENDIZAGEM COMERCIAL');
-    $clientePJ->setNomeFantasia('SENAC PENHA');
-    $clientePJ->setEmail('penha@sp.senac.br');
-    $clientePJ->setCnpj('3709814000783');
-    $clientePJ->setSenha('abc123');
-    $clientePJ->setAnoFundacao(2000);
+<h3>Pessoa Juridica</h3>
+<p> <?=$clientePJ->getNome()?> </p>
 
-    $clienteMei->setNome('apoio tecnologico ltda');
-    $clienteMei->setNomeFantasia('Powerslave Tech');
-    $clienteMei->setEmail('tech@powerslave.br');
-    $clienteMei->setCnpj('378561563123');
-    $clienteMei->setSenha('123abc');
-    $clienteMei->setAnoFundacao(2023);
-    $clienteMei->setAreaDeAtuacao('Tecnologia');
-
-    
-    
-    ?>
-
-    <pre><?=var_dump($clienteMei, $clientePF, $clientePJ);?></pre>
+    <hr>
+    <section> <?=$clientePF->exibirDados()?> </section>
+    <section> <?=$clientePJ->exibirDados()?> </section>
 
 
-    
+<pre> <?=var_dump($clientePF, $clientePJ)?> </pre>
+
+
 </body>
 </html>
